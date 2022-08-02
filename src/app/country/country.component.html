@@ -1,0 +1,90 @@
+<div class="container mb-4">
+  <ng-container *ngIf="country$ | async as country; else: loading">
+    <div class="card">
+      <div class="card-header">
+        <h1>{{ country.name.common }}</h1>
+      </div>
+      <div class="card-body">
+        <div class="row g-4 justify-content-around">
+          <div class="col-sm-12 col-md-3 card-img-container" *ngIf="country.flags.svg">
+            <h2>Flag</h2>
+            <img [src]="country.flags.svg" [alt]="country.name.common">
+          </div>
+          <div class="col-sm-12 col-md-3 card-img-container" *ngIf="country.coatOfArms.svg">
+            <h2>Coat of Arms</h2>
+            <img [src]="country.coatOfArms.svg" [alt]="country.name.common">
+          </div>
+          <div class="col-sm-12 col-md-4">
+            <h2>Information</h2>
+            <ul>
+              <li>
+                <span class="country-info">Region:</span>
+                {{ country.region }}
+              </li>
+              <li>
+                <span class="country-info">Subregion:</span>
+                {{ country.subregion }}
+              </li>
+              <li>
+                <span class="country-info">Continents:</span>
+                <ng-container *ngFor="let continent of country.continents; last as isLast">
+                  {{ continent }}<ng-container *ngIf="!isLast">,</ng-container>
+                </ng-container>
+              </li>
+              <li>
+                <span class="country-info">Capital:</span>
+                <ng-container *ngFor="let capital of country.capital; last as isLast">
+                  {{ capital }}<ng-container *ngIf="!isLast">,</ng-container>
+                </ng-container>
+              </li>
+              <li>
+                <span class="country-info">Latitude/Longitude:</span>
+                <ng-container *ngFor="let coordinates of country.latlng; last as isLast">
+                  {{ coordinates }}<ng-container *ngIf="!isLast">,</ng-container>
+                </ng-container>
+              </li>
+              <li>
+                <span class="country-info">Timezones:</span>
+                <ng-container *ngFor="let timezone of country.timezones; last as isLast">
+                  {{ timezone }}<ng-container *ngIf="!isLast">,</ng-container>
+                </ng-container>
+              </li>
+              <li>
+                <span class="country-info">Languages:</span>
+                <ng-container *ngFor="let language of country.languages | keyvalue; last as isLast">
+                  {{ language.value }}<ng-container *ngIf="!isLast">,</ng-container>
+                </ng-container>
+              </li>
+              <li>
+                <span class="country-info">Currencies:</span>
+                <ng-container *ngFor="let currency of country.currencies | keyvalue; last as isLast">
+                  {{ currency.value.name }} ({{ currency.value.symbol }})<ng-container *ngIf="!isLast">,</ng-container>
+                </ng-container>
+              </li>
+              <li>
+                <span class="country-info">Area:</span>
+                {{ country.area | number }} km<sup>2</sup>
+              </li>
+              <li>
+                <span class="country-info">Population:</span>
+                {{ country.population | number }}
+              </li>
+              <li>
+                <span class="country-info">Top Level Domains:</span>
+                <ng-container *ngFor="let tld of country.tld; last as isLast">
+                  {{ tld }}<ng-container *ngIf="!isLast">,</ng-container>
+                </ng-container>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <ng-template #loading>
+    <p class="text-center">
+      <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+      Loading...
+    </p>
+  </ng-template>
+</div>

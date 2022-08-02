@@ -1,0 +1,89 @@
+<div class="container">
+  <form [formGroup]="searchForm" (ngSubmit)="search()" class="mb-4">
+    <div class="row row-cols-1 row-cols-md-4 g-4 align-items-end">
+      <div class="col">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" class="form-control" id="name" formControlName="name">
+      </div>
+      <div class="col">
+        <label for="region" class="form-label">Region</label>
+        <select class="form-select" id="region" formControlName="region" (change)="changeRegion()">
+          <option value="">All Regions</option>
+          <ng-container *ngIf="regions$ | async as regions">
+            <option *ngFor="let region of regions" [value]="region">{{ region }}</option>
+          </ng-container>
+        </select>
+      </div>
+      <div class="col">
+        <label for="subregion" class="form-label">Subregion</label>
+        <select class="form-select" id="subregion" formControlName="subregion">
+          <option value="">All Subregions</option>
+          <ng-container *ngIf="subregions$ | async as subregions">
+            <option *ngFor="let subregion of subregions" [value]="subregion.name">{{ subregion.name }}</option>
+          </ng-container>
+        </select>
+      </div>
+      <div class="col">
+        <button type="submit" class="btn btn-primary">Search</button>
+      </div>
+    </div>
+  </form>
+
+  <form [formGroup]="optionsForm" class="mb-4">
+    <div class="row row-cols-1 row-cols-md-4 g-4 align-items-end">
+      <div class="col">
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" role="switch" id="showName" formControlName="showName" (change)="changeOptions()">
+          <label class="form-check-label" for="showName">Show Name</label>
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" role="switch" id="showRegion" formControlName="showRegion" (change)="changeOptions()">
+          <label class="form-check-label" for="showRegion">Show Region</label>
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" role="switch" id="showSubregion" formControlName="showSubregion" (change)="changeOptions()">
+          <label class="form-check-label" for="showSubregion">Show Subregion</label>
+        </div>
+      </div>
+    </div>
+  </form>
+  
+  <ng-container *ngIf="data$ | async as data; else: loading">
+    <h2 class="text-center" *ngIf="data.countries?.length === 0">No countries found.</h2>
+
+    <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4 mb-4">
+      <div class="col" *ngFor="let country of data.countries">
+        <div class="card h-100 country">
+          <div class="card-img-container ratio ratio-16x9">
+            <a [routerLink]="['/country', country.cca2]">
+              <img class="card-img-top" [src]="country.flags.svg" [alt]="data.options.showName ? country.name.common : null">
+            </a>
+          </div>
+          <div class="card-body" *ngIf="data.options.showName">
+            <a [routerLink]="['/country', country.cca2]">
+              <h5 class="card-title">{{ country.name.common }}</h5>
+            </a>
+          </div>
+          <ul class="list-group list-group-flush" *ngIf="data.options.showRegion || data.options.showSubregion">
+            <li class="list-group-item" *ngIf="data.options.showRegion">
+              <span class="country-info">Region</span><br />{{ country.region || '&nbsp;' }}
+            </li>
+            <li class="list-group-item" *ngIf="data.options.showSubregion">
+              <span class="country-info">Subregion</span><br />{{ country.subregion || '&nbsp;' }}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <ng-template #loading>
+    <p class="text-center">
+      <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+      Loading...
+    </p>
+  </ng-template>
+</div>

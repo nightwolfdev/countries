@@ -1,1 +1,25 @@
-/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.css";
+
+.country {
+  overflow: hidden;
+  
+  &:hover, &:hover .list-group-item {
+    border-color: #000;
+  }
+
+  &:hover img {
+    transform: scale(1.15);
+  }
+
+  .card-img-container {
+    overflow: hidden;
+
+    img {
+      transition: transform .5s ease;
+    }
+  }
+}
+
+.country-info {
+  font-weight: bold;
+}

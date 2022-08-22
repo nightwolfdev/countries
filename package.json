@@ -1,5 +1,12 @@
 {
   "name": "countries",
+  "description": "Countries app using Angular, RxJS, Typescript and REST Countries API",
+  "keywords": ["api", "angular", "typescript", "rxjs"],
+  "homepage": "https://github.com/nightwolfdev/countries",
+  "author": {
+    "name": "NightWolf Software Development",
+    "url": "https://nightwolf.dev"
+  },
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",

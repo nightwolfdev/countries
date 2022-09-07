@@ -1,5 +1,7 @@
 # Countries
 
+![Countries App](./src/assets/img/countries-app.png)
+
 Countries app using Angular, RxJS, TypeScript, and REST Countries API.
 
 ## Getting Started

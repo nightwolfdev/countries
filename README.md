@@ -2,7 +2,7 @@
 
 ![Countries App](./src/assets/img/countries-app.png)
 
-Countries app using Angular, RxJS, TypeScript, and REST Countries API.
+Search country flags by name, region, and subregion. View more details about each country.
 
 ## Getting Started
 
@@ -21,6 +21,7 @@ Countries app using Angular, RxJS, TypeScript, and REST Countries API.
 
 * [Demo](https://nightwolf.dev/demos/countries)
 * [Angular](https://angular.io)
+* [Bootstrap](https://getbootstrap.com/)
 * [RxJS](https://rxjs.dev)
 * [TypeScript](https://www.typescriptlang.org)
 * [REST Countries API](https://restcountries.com/)

@@ -19,7 +19,7 @@ Search country flags by name, region, and subregion. View more details about eac
 
 ## Links
 
-* [Demo](https://nightwolf.dev/demos/countries)
+* [Demo](https://nightwolfdev.github.io/countries)
 * [Angular](https://angular.io)
 * [Bootstrap](https://getbootstrap.com/)
 * [RxJS](https://rxjs.dev)

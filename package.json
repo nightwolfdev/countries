@@ -16,7 +16,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --base-href /countries/",
     "watch": "ng build --watch --configuration development"
   },
   "private": true,
